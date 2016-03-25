@@ -8,11 +8,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class UserGroupInfoFetchingSimpleDemo1 {
+public class InfoFetch {
 
 	private String key;
 
-	public UserGroupInfoFetchingSimpleDemo1() {
+	public InfoFetch() {
 		// from https://secure.meetup.com/meetup_api/key/
 		key = System.getenv("meetup_api_key");
 	}
@@ -20,7 +20,7 @@ public class UserGroupInfoFetchingSimpleDemo1 {
 	public static void main(String[] args) {
 		try {
 			PrintWriter out = new PrintWriter("demo.txt");
-			UserGroupInfoFetchingSimpleDemo1 infoFetcher = new UserGroupInfoFetchingSimpleDemo1();
+			InfoFetch infoFetcher = new InfoFetch();
 			String[] groups = { "omahajava", "coffeeandcode" };
 			for (String groupName : groups) {
 				String description = infoFetcher.getDescription(groupName);
@@ -37,7 +37,7 @@ public class UserGroupInfoFetchingSimpleDemo1 {
 		String json = getJson(groupName);
 		return json; // TODO: Parse the json
 	}
-	
+
 	private String getJson(String groupName) {
 		// TODO: Refactor this!
 		String json = null;
@@ -46,7 +46,7 @@ public class UserGroupInfoFetchingSimpleDemo1 {
 			URLConnection conn = new URL(urlString).openConnection();
 			LineNumberReader in = new LineNumberReader(new InputStreamReader(conn.getInputStream()));
 			String line = null;
-			while (null != (line = in.readLine())) { 
+			while (null != (line = in.readLine())) {
 				json += line;
 			}
 			in.close();
