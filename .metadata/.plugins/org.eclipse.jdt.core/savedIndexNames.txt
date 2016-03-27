@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+/home/twister9962/Dev1/UserGroupsInfoFetcher/.metadata/.plugins/org.eclipse.jdt.core
+2118273268.index
