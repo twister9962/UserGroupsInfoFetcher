@@ -17,7 +17,7 @@ public class InfoFetch {
 
 	public InfoFetch() {
 		// from https://secure.meetup.com/meetup_api/key/
-		key = System.getenv("meetup_api_key");
+		key = System.getenv("1d661c484f5a8291361381e24416b71");
 	}
 
 	public static void main(String[] args) {
@@ -45,7 +45,7 @@ public class InfoFetch {
 	private String getJson(String groupName) {
 		// TODO: Refactor this!
 		String json = null;
-		String urlString = String.format("https://api.meetup.com/%s?key=%s", groupName, key);
+		String urlString = String.format("https://api.meetup.com/%s?key=%s", groupName, "1d661c484f5a8291361381e24416b71");
 		try {
 			URLConnection conn = new URL(urlString).openConnection();
 			LineNumberReader in = new LineNumberReader(new InputStreamReader(conn.getInputStream()));
