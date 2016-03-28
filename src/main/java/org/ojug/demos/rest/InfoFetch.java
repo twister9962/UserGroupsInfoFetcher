@@ -3,10 +3,13 @@ package org.ojug.demos.rest;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.io.PrintWriter;
+import java.io.Writer;
+import java.io.FileWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class InfoFetch {
 
@@ -19,14 +22,15 @@ public class InfoFetch {
 
 	public static void main(String[] args) {
 		try {
-			PrintWriter out = new PrintWriter("demo.txt");
+			Writer writer = new FileWriter("demo.json");
 			InfoFetch infoFetcher = new InfoFetch();
 			String[] groups = { "omahajava", "coffeeandcode" };
+			Gson gson = new GsonBuilder().create();
 			for (String groupName : groups) {
 				String description = infoFetcher.getDescription(groupName);
-				out.println(description);
-			}
-			out.close();
+				gson.toJson(description, writer);
+				}
+			writer.close();
 		} catch (Exception bland) {
 			bland.printStackTrace();
 		}
@@ -35,7 +39,7 @@ public class InfoFetch {
 
 	private String getDescription(String groupName) {
 		String json = getJson(groupName);
-		return json; // TODO: Parse the json
+		return json;
 	}
 
 	private String getJson(String groupName) {
