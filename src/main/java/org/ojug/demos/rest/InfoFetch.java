@@ -17,14 +17,15 @@ public class InfoFetch {
 
 	public InfoFetch() {
 		// from https://secure.meetup.com/meetup_api/key/
-		key = System.getenv("1d661c484f5a8291361381e24416b71");
+		key = System.getenv("Meetup_API");
 	}
 
 	public static void main(String[] args) {
 		try {
 			Writer writer = new FileWriter("demo.json");
 			InfoFetch infoFetcher = new InfoFetch();
-			String[] groups = { "omahajava", "coffeeandcode" };
+//			, "coffeeandcode"
+			String[] groups = { "omahajava" };
 			Gson gson = new GsonBuilder().create();
 			for (String groupName : groups) {
 				String description = infoFetcher.getDescription(groupName);
@@ -44,8 +45,8 @@ public class InfoFetch {
 
 	private String getJson(String groupName) {
 		// TODO: Refactor this!
-		String json = null;
-		String urlString = String.format("https://api.meetup.com/%s?key=%s", groupName, "1d661c484f5a8291361381e24416b71");
+		String json = "";
+		String urlString = String.format("https://api.meetup.com/%s?key=%s", groupName, key);
 		try {
 			URLConnection conn = new URL(urlString).openConnection();
 			LineNumberReader in = new LineNumberReader(new InputStreamReader(conn.getInputStream()));
